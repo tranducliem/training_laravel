@@ -3,3 +3,15 @@
 Homestead.yaml
 Homestead.json
 .env
+
+# Ignore other unneeded files.
+.travis.yml
+phpdoc.dist
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+.buildpath
+.settings
