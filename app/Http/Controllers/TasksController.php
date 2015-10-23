@@ -41,8 +41,10 @@ class TasksController extends Controller
     public function store(CheckTasksRequest $request)
     {
         $data = $request->all();
+        $imageName = md5(rand(111111, 999999)).time().'.'.$request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(base_path() . '/public/img/', $imageName);
+        $data['image'] = $imageName;
         if(Task::create($data)){
-            //\Session::flash('flash_message', 'Task successfully added!');
             Session::flash('flash_message', 'Task successfully added!');
         }
         return redirect('tasks');
@@ -58,6 +60,19 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         return view('tasks.show')->withTask($task);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $input = $request->all();
+        $data['tasks'] = Task::where('title', 'LIKE', '%'.$input['keyword'].'%')->get(); //Task::all();
+        return view('tasks.ajax', $data);
     }
 
     /**
@@ -83,6 +98,9 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         $data = $request->all();
+        $imageName = md5(rand(111111, 999999)).time().'.'.$request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(base_path() . '/public/img/', $imageName);
+        $data['image'] = $imageName;
         if($task->fill($data)->save()){
             Session::flash('flash_message', 'Task successfully updated!');
         }

@@ -15,7 +15,6 @@
         </div>
         <div class="form-group">
             {!! Form::label('image', 'Image:') !!}
-            {{--{!! Form::text('image',null,['class'=>'form-control']) !!}--}}
             {!! Form::file('image', null) !!}
         </div>
         {!! Form::submit('Create New Task', ['class' => 'btn btn-primary']) !!}

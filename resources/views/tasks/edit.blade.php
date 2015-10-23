@@ -2,7 +2,8 @@
 
 @section('content')
     <h1>Edit Task: {{ $task->title }}</h1>
-    <p class="lead">Add to your task list below.</p>
+    <h1>Description Task: {{ $task->description }}</h1>
+    <p><img src="{{ asset('img/'.$task->image )}}" /></p>
     <hr>
     {!! Form::model($task, ['method' => 'PATCH', 'route' => ['tasks.update', $task->id]]) !!}
         <div class="form-group">
@@ -20,8 +21,7 @@
         {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
     <h3>Delete</h3>
-    {{ Form::open(['method' => 'DELETE', 'route' => ['tasks.destroy', $task->id]]) }}
-        {{ Form::submit('Delete', ['class' => 'btn btn_confirm_delete']) }}
-    {{ Form::close() }}
-
+    {!! Form::open(['method' => 'DELETE', 'route' => ['tasks.destroy', $task->id]]) !!}
+        {!! Form::submit('Delete', ['class' => 'btn btn_confirm_delete']) !!}
+    {!! Form::close() !!}
 @stop

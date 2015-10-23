@@ -19,6 +19,6 @@ Route::get('/aboutme', 'PagesController@about_me');
 /*Route::get('/articles', 'ArticlesController@index');
 Route::get('/articles/create', 'ArticlesController@create');
 Route::post('/articles', 'ArticlesController@store');*/
-
+Route::post('/tasks/search', 'TasksController@search');
 Route::resource('articles', 'ArticlesController');
 Route::resource('tasks', 'TasksController');

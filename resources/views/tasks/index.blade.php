@@ -3,7 +3,14 @@
 @section('content')
     <div>This is task list</div>
     <div><a href="{{ route('tasks.create') }}">Create new task</a></div>
-    <table border="1" >
+    <div>
+        {!! Form::open(array('url'=>'tasks/search','method'=>'POST', 'id' => 'search_form')) !!}
+            {!! Form::label('search', 'Search:', ['class' => 'control-label']) !!}
+            {!! Form::text('keyword', null,['class' => 'form-control search-field', 'data-url' => URL('tasks/search'), 'data-fill' => 'data_fill']) !!}
+            {!! Form::button('Search', ['class' => 'btn btn-danger', 'id' => 'btnSearch']) !!}
+        {!! Form::close() !!}
+    </div>
+    <table border="1" class="data-view" >
         <thead>
             <tr>
                 <td>ID</td>
@@ -14,13 +21,13 @@
                 <td colspan="3" >Action</td>
             </tr>
         </thead>
-        <tbody>
-            @foreach($tasks as $item)
+        <tbody class="data-view">
+            {{--@foreach($tasks as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->description }}</td>
-                    <td><img src="{{ asset('img/'.$item->image.'.jpg' )}}" height="35" width="30"></td>
+                    <td><img src="{{ asset('img/'.$item->image )}}" height="65" width="50"></td>
                     <td>{{ $item->created_at }}</td>
                     <td><a href="{{ route('tasks.show', $item->id) }}">View</a></td>
                     <td><a href="{{ route('tasks.edit', $item->id) }}">Edit</a></td>
@@ -30,7 +37,8 @@
                         {!! Form::close() !!}
                     </td>
                 </tr>
-            @endforeach
+            @endforeach--}}
+            @include('tasks.ajax')
         </tbody>
     </table>
 @stop

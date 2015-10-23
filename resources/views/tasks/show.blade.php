@@ -3,7 +3,7 @@
 @section('content')
     <h1>{{ $task->title }}</h1>
     <p class="lead">{{ $task->description }}</p>
-    <p><img src="{{ asset('img/'.$task->image.'.jpg' )}}" height="35" width="30"></p>
+    <p><img src="{{ asset('img/'.$task->image )}}" /></p>
     <hr>
 
     <a href="{{ route('tasks.index') }}" class="btn btn-info">Back to all tasks</a><br />

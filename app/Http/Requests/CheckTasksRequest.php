@@ -26,7 +26,8 @@ class CheckTasksRequest extends Request
         return [
             'title' => 'required|min:2',
             'description' => 'required',
-            'image' => 'required|mimes:jpg'
+            //'image' => 'required|mimes:jpg'
+            'image' => 'required'
         ];
     }
 }
